@@ -22,7 +22,7 @@
 			return explode('/' , $parse_url['path']);
 			#url path parshe END
 		}catch(Exception $e){
-			throw new Exception(core::ex_string($e,__CLASS__,__FUNCTION__));		
+			throw new Exception(core::ex_string($e));		
 		}
 	}
 
@@ -41,7 +41,7 @@
 			}
 			#controller load END
 		}catch(Exception $e){
-					throw new Exception(core::ex_string($e,__CLASS__,__FUNCTION__));	
+					throw new Exception(core::ex_string($e));	
 		}
 	}
 
@@ -61,14 +61,20 @@
 				core::$controller->{core::$path[2].action_format};
 			}
 			#action call END
+			throw new Exception('bisey oldu');
 		}catch(Exception $e){
-			throw new Exception(core::ex_string($e,__CLASS__,__FUNCTION__));
+			throw new Exception(core::ex_string($e));
 		}
 	}
 
-	static function ex_string($e, $c='', $m='', $f=''){
-		return 	'exception: '.$c.'::'.$m.'(), $path = "'.implode('/',core::$path).'" in '.$f."  \n\t-".$e->getMessage().	"\n";
-
+	static function ex_string($e){
+		$ex = new stdClass;
+		$ex->m = $e->getMessage();
+		if(detailed_log)
+			$ex->l = $e->getTrace();
+		$ex->t = date('d-m-y h:i:s');
+		
+		return json_encode($ex)."\n";
 	}
 
 	static function err($e){
@@ -79,7 +85,7 @@
 		}
 
 		if(log){
-			if(log_file!=''){
+			if(log_path!=''){
 				error_log($e->getMessage(),3,log_path.'/'.date('d-m-y ',time()).'.log');
 			}else{
 				errot_log($e->getMessage());
