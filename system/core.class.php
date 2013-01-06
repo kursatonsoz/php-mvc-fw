@@ -79,9 +79,7 @@
 
 	static function err($e){
 		if(mode=='developer'){
-					echo '<pre>';
 					print_r(($e->getMessage())); 
-					echo '<pre>';
 		}
 
 		if(log){
