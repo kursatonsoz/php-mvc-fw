@@ -1,35 +1,30 @@
 <?php
-	define('mode', 'developer');
+	/*
+		a simple mvc based php framework 
+		Mustafa HERGÜL - mstfhrgl@gmail.com 
+		License: GPLv3
+	*/
 
-	define('default_controller', 'giris');
-	define('default_action', 'index');
-	define('action_format',	'_action');
-	define('actions_enabled', TRUE);
+  session_start();
+  error_reporting(0); ini_set("display_errors", 0); 
+	define('system','system/');
+	define('systemPath', 'system/core/');
+	define('configDic',systemPath.'config/');
 
-	define('log',TRUE);
-	define('log_path','../logs'); #if empty: message is sent to PHP's system logger
-	define('detailed_log',TRUE);
+	define('config','developer');	#default: NULL
+	define('autoload',TRUE);
+        
 
-	define('db_host', 'localhost');
-	define('db_user', '');
-	define('db_pass', '');
-	define('db_database', '');
 
-	define('stylePath','/static/style/');
-	define('scriptPath', '/static/script/');
-
-	define('systemPath', 'system/');
-	define('imagePath', '/static/images/');
-
-	if(mode=='developer'){
-		ini_set('display_errors', 1);
-		error_reporting(E_ALL);
-	}
-
+	require_once systemPath.'config.class.php';
 	require_once systemPath.'core.class.php';
 	require_once systemPath.'controller.class.php';
 	require_once systemPath.'model.class.php';
 	require_once systemPath.'view.php';
+        
+	if(autoload)
+		require_once systemPath.'autoload.php';
+
 	$core = new core();
 
 
