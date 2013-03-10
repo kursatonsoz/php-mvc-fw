@@ -1,6 +1,6 @@
 <?php
 	/*
-		a simple mvc based php framework 
+		a simple php framework based on mvc 
 		Mustafa HERGÜL - mstfhrgl@gmail.com 
 		License: GPLv3
 	*/
