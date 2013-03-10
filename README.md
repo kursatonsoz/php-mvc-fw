@@ -1,7 +1,8 @@
-php-mvc-fw-alfa
+php-mvc-fw
 ===============
 
 A php framework based on the mvc
+mustafa hergül
+mstfhrgl@gmail.com
 
-
-License("GPL")
+License("GPLv3")
