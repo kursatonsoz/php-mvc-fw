@@ -1,15 +1,10 @@
 <?php
-/*
-mstfhrgl@gmail.com
-A basic mysql db class , Mustafa HERGÜL 2012
-*/
 
-
-define('db_host','localhost');
-define('db_user','root');
-define('db_pass','1');
-define('db_database','abi');
-class db{     
+        define('db_host','localhost');
+        define('db_user','root');
+        define('db_pass','1');
+        define('db_database','abi');
+        class db{     
                 public $db;
 		public static $query_temp;
 

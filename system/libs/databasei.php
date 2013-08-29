@@ -64,8 +64,7 @@
         mysqli_query($this->_resource,"SET NAMES 'utf8' COLLATE 'utf8_turkish_ci'");
         mysqli_query($this->_resource,"SET CHARACTER SET 'utf8_turkish_ci'");
         mysqli_query($this->_resource,"SET COLLATION_CONNECTION = 'utf8_turkish_ci'");
-/*
-* 
+
 init_connect='SET collation_connection = utf8_turkish_ci'
 init_connect='SET NAMES utf8' 
 init_connect='SET NAMES utf8 COLLATE utf8_turkish_ci'
@@ -116,6 +115,9 @@ init_connect='SET NAMES utf8 COLLATE utf8_turkish_ci'
                 exit();
             }
         }
+        mysqli_query($this->_uresource,"SET NAMES 'utf8' COLLATE 'utf8_general_ci'");
+        mysqli_query($this->_uresource,"SET CHARACTER SET 'utf8_general_ci'");
+        mysqli_query($this->_uresource,"SET COLLATION_CONNECTION = 'utf8_general_ci'");
         $this->_table_prefix = $table_prefix;
         $this->_ticker = 0;
         $this->_log = array();
@@ -157,7 +159,14 @@ init_connect='SET NAMES utf8 COLLATE utf8_turkish_ci'
     //function Quote( $text ) {
     function quote( $text ) {
         return '\'' . $this->getEscaped( $text ) . '\'';
+        //return $text;
     }
+
+        function quote2( $text ) {
+        //return '\'' . $this->getEscaped( $text ) . '\'';
+        return $text;
+    }
+
     /**
      * Quote an identifier name (field, table, etc)
      * @param string The name
@@ -544,7 +553,7 @@ init_connect='SET NAMES utf8 COLLATE utf8_turkish_ci'
         else 
             $id = mysqli_insert_id( $this->_uresource );
             
-        //$id = mysqli_insert_id( $this->_resource );
+        $id = mysqli_insert_id( $this->_uresource );
         ($verbose) && print "id=[$id]<br />\n";
         if ($keyName && $id) {
             $object->$keyName = $id;
